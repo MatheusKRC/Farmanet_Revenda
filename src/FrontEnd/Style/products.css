@@ -1,0 +1,136 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+/* Fundo geral */
+.products-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at center, #111 0%, #000 70%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Container principal */
+.products-container {
+  background: #fff;
+  width: 100%;
+  max-width: 1100px;   /* 🔥 agora é fluido */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Campo de busca */
+.products-search {
+  margin-bottom: 20px;
+}
+
+.products-search input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #000;
+  font-size: 15px;
+  outline: none;
+}
+
+/* Wrapper para scroll */
+.table-wrapper {
+  overflow-x: auto;   /* 🔥 scroll horizontal se precisar */
+  overflow-y: auto;
+  max-height: 65vh;   /* 🔥 limita altura */
+}
+
+/* Tabela */
+.products-table {
+  width: 100%;  /* 🔥 impede quebrar colunas */
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.products-table thead th {
+  border: 2px solid #000;
+  padding: 8px;
+  background: #f2f2f2;
+  text-align: left;
+  font-weight: bold;
+
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.products-table tbody td {
+  border: 2px solid #000;
+  padding: 8px;
+}
+
+/* Hover */
+.products-table tbody tr:hover {
+  background: #eaeaea;
+  cursor: pointer;
+}
+
+/* Ajustes de alinhamento */
+.products-table th:nth-child(1),
+.products-table td:nth-child(1) {
+  width: 80px;
+}
+
+.products-table th:nth-child(4),
+.products-table td:nth-child(4),
+.products-table th:nth-child(5),
+.products-table td:nth-child(5),
+.products-table th:nth-child(6),
+.products-table td:nth-child(6) {
+  text-align: right;
+}
+
+/* ===================== */
+/* RESPONSIVIDADE */
+/* ===================== */
+
+@media (max-width: 1024px) {
+  .products-container {
+    padding: 16px;
+  }
+
+  .products-table {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-page {
+    padding: 20px 10px;
+  }
+
+  .products-container {
+    padding: 14px;
+  }
+
+  .products-search input {
+    font-size: 14px;
+  }
+
+  .products-table {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-search input {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .products-table {
+    font-size: 11px;
+  }
+}

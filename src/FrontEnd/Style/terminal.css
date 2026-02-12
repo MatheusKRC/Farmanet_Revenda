@@ -1,0 +1,239 @@
+/* fundo da tela */
+* {
+  box-sizing: border-box;
+}
+
+.terminal {
+    width: 100vw;
+    height: 100vh;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    background: radial-gradient(circle at center, #111 0%, #000 70%);
+  }
+  
+  /* card principal */
+  .terminal-card {
+    width: 95%;
+    max-width: 1200px;
+    height: 90vh;
+    max-height: 700px;
+  
+    display: flex;
+    flex-direction: column;
+  
+    background-color: #1f1b3a;
+    border-radius: 8px;
+    overflow: hidden;
+  
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  }
+  /* header */
+  .terminal-header {
+    height: 60px;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    background-color: #2a245a;
+    color: #fff;
+    font-size: 22px;
+  }
+  
+  /* corpo */
+  .terminal-body {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 250px 220px 1fr;
+    overflow: hidden; /* 🔒 impede vazamento */
+  }
+  
+  /* coluna esquerda */
+  .terminal-left {
+    background-color: #221e45;
+    color: #fff;
+  
+    padding: 16px;
+  
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .terminal-left img {
+    margin-top: auto;
+    width: 180px;
+  }
+  
+  /* inputs */
+  .terminal-inputs {
+    background-color: #1f1b3a;
+    padding: 16px;
+  
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+  
+    color: #fff;
+  }
+  
+  .terminal-inputs input {
+    padding: 6px;
+    border-radius: 4px;
+    border: none;
+  }
+  
+  /* produtos */
+  .terminal-products {
+    background-color: #fff;
+  }   
+
+  .right-panel {
+    background: #fff;
+  height: 100%;
+  padding: 12px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden; /* 🔒 impede a tabela de esticar o layout */
+  }
+
+  .products-wrapper {
+    flex: 1;
+  overflow-y: auto; /* ✅ scroll só aqui */
+  overflow-x: hidden; 
+  }
+
+  .products-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .products-table thead {
+    background-color: #f2f2f2;
+  }
+  
+  .products-table thead th {
+    position: sticky;
+  top: 0;
+  background-color: #f2f2f2;
+  z-index: 2;
+  }
+
+  .products-table tbody td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .products-table th:nth-child(1),
+.products-table td:nth-child(1) {
+  width: 50%;
+}
+
+.products-table th:nth-child(2),
+.products-table td:nth-child(2) {
+  width: 15%;
+  text-align: center;
+}
+
+.products-table th:nth-child(3),
+.products-table td:nth-child(3),
+.products-table th:nth-child(4),
+.products-table td:nth-child(4) {
+  width: 17.5%;
+  text-align: right;
+}
+
+.products-table td {
+  font-family: "Courier New", monospace;
+}
+
+.products-table td:first-child {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.products-table td:first-child {
+  white-space: normal;
+}
+
+.products-table tr.active {
+  background-color: #e6e6ff;
+}
+
+
+  /* footer */
+  .terminal-footer {
+    height: 40px;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+  
+    background-color: #111;
+    color: #fff;
+    font-size: 13px;
+  }
+
+  /* ============================= */
+/* TABLET */
+@media (max-width: 1024px) {
+  .terminal-body {
+    grid-template-columns: 200px 200px 1fr;
+  }
+
+  .terminal-left img {
+    width: 140px;
+  }
+}
+
+/* ============================= */
+/* CELULAR */
+@media (max-width: 768px) {
+  .terminal-card {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .terminal-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .terminal-left {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .terminal-left img {
+    width: 100px;
+    margin-top: 0;
+  }
+
+  .terminal-inputs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .right-panel {
+    flex: 1;
+  }
+
+  .products-table {
+    font-size: 12px;
+  }
+
+  .terminal-footer {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 11px;
+  }
+}

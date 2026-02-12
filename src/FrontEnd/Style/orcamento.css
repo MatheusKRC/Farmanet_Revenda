@@ -1,0 +1,161 @@
+ /* fundo da tela */
+.orcamento {
+    min-height: 100vh;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: radial-gradient(circle at center, #111 0%, #000 70%);
+  }
+  
+  /* card principal */
+  .orcamento-card {
+    width: 95%;
+    max-width: 1100px;
+    background: #ffffff;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgb(255, 255, 255);
+    padding: 24px;
+  }
+  
+  /* header */
+  .orcamento-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #000;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .orcamento-header h2 {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .orcamento-header span {
+    font-size: 14px;
+  }
+  
+  /* corpo */
+  .orcamento-body {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* tabela */
+  .orcamento-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .orcamento-table thead {
+    background: #f5f5f5;
+  }
+  
+  .orcamento-table th,
+  .orcamento-table td {
+    border: 1px solid #000;
+    padding: 8px;
+  }
+  
+  .orcamento-table th {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .orcamento-table td {
+    vertical-align: top;
+  }
+  
+  /* alinhamentos específicos */
+  .orcamento-table td:nth-child(1) {
+    width: 35%;
+    text-align: left;
+    word-break: break-word;
+  }
+  
+  .orcamento-table td:nth-child(2) {
+    width: 20%;
+    text-align: center;
+  }
+  
+  .orcamento-table td:nth-child(3),
+  .orcamento-table td:nth-child(4),
+  .orcamento-table td:nth-child(5) {
+    width: 15%;
+    text-align: right;
+    white-space: nowrap;
+  }
+  
+  /* footer / totais */
+  .orcamento-footer {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .orcamento-total {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 1024px) {
+    .orcamento-card {
+      padding: 16px;
+    }
+  
+    .orcamento-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  
+    .orcamento-table th,
+    .orcamento-table td {
+      font-size: 13px;
+      padding: 6px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .orcamento-card {
+      padding: 16px;
+    }
+  
+    .orcamento-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  
+    .orcamento-table th,
+    .orcamento-table td {
+      font-size: 13px;
+      padding: 6px;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    .orcamento-body {
+      overflow-x: auto;
+    }
+  
+    .orcamento-table {
+      min-width: 700px;
+    }
+  
+    .orcamento-table th,
+    .orcamento-table td {
+      font-size: 11px;
+      padding: 4px;
+    }
+  
+    .orcamento-footer {
+      font-size: 14px;
+    }
+  }
