@@ -14,7 +14,6 @@ function Terminal() {
   const [items, setItems] = useState([])
   const [total, setTotal] = useState(0)
   const [subTotal, setSubtotal] = useState(0)
-  const [totalGeral, setTotalGeral] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const { product } = useContext(ProductContext)
   const navigate = useNavigate()
@@ -36,7 +35,6 @@ function Terminal() {
 
     setSubtotal(prev => prev + (product.preco_venda * (quantidade || 1)))
     setTotal(prev => prev + (product.preco_compra * (quantidade || 1)))
-    setTotalGeral(prev => prev + (product.preco_compra + (product.preco_compra * buyer.margem / 100)).toFixed(2) * (quantidade || 1))
 
     if (buyer.nome !== "Venda Ao Consumidor") {
       setOrcamento(prev => [
@@ -135,7 +133,7 @@ function Terminal() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };  
-  }, [quantidade])
+  }, [quantidade, addProductToBudget])
 
   useEffect(() => {
     if (!loaded) return

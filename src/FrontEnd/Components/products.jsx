@@ -43,7 +43,7 @@ function Products() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };  
-  }, [products])
+  }, [products, filter])
 
   return (
     <div className="products-page">
