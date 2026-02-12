@@ -11,7 +11,7 @@ function Orcamento() {
     useEffect(() => {
         let soma = 0
         if(orcamento) {
-            orcamento.map((preco) => {soma += Number(preco.total)})
+            orcamento.map((preco) => {return soma += Number(preco.total)})
             setTotal(soma.toFixed(2))
         }
     }, [orcamento])

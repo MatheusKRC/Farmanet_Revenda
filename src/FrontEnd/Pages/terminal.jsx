@@ -133,7 +133,7 @@ function Terminal() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };  
-  }, [quantidade, addProductToBudget])
+  }, [quantidade, addProductToBudget, buyer, items.length, loaded, navigate, product])
 
   useEffect(() => {
     if (!loaded) return
