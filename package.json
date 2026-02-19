@@ -24,13 +24,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start nodemon src/BackEnd/server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "dev": "nodemon src/BackEnd/server.js",
     "eject": "react-scripts eject",
     "lint": "eslint -c .eslintrc.json . --ext .js,.jsx,.ts,.tsx",
-    "reset": "npx sequelize-cli db:migrate",
+    "reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "seeds": "npx sequelize-cli db:seed:undo:all npx sequelize-cli db:seed:all"
   },
   "eslintConfig": {
