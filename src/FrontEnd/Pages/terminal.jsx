@@ -133,7 +133,8 @@ function Terminal() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };  
-  }, [quantidade, buyer, items.length, loaded, navigate, product])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quantidade])
 
   useEffect(() => {
     if (!loaded) return
