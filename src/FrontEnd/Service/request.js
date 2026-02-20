@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const request = axios.create({
-  baseURL: 'http://localhost:3004',
+  baseURL: 'https://farmanetrevenda-production-63b5.up.railway.app/',
 });
 
 export const getData = async (endpoint) => {
