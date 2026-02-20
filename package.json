@@ -32,7 +32,7 @@
     "lint": "eslint -c .eslintrc.json . --ext .js,.jsx,.ts,.tsx",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
-    "deploy": "npm run migrate && npm run seed && node src/BackEnd/server.js",
+    "deploy": "npx sequelize-cli db:drop && npm run migrate && npm run seed && node src/BackEnd/server.js",
     "reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "seeds": "npx sequelize-cli db:seed:undo:all npx sequelize-cli db:seed:all"
   },
