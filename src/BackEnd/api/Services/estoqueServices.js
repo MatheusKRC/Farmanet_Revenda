@@ -1,23 +1,23 @@
 const { Estoque } = require('../../Database/models');
 
 const getEstoque = async () => {
-    const Estoque = await Estoque.findAll()
+    const estoque = await Estoque.findAll()
   
-    if (!Estoque) {
-      return { message: 'Estoque not Found', status: 404 };
+    if (!estoque) {
+      return { message: 'estoque not Found', status: 404 };
     }
-    return { message: Estoque, status: null };
+    return { message: estoque, status: null };
   };
 
 const getEstoqueByCod = async (codigo) => {
-  const Estoque = await Estoque.findOne({
+  const estoque = await Estoque.findOne({
     where: {codigo},
   })
 
-  if (!Estoque) {
-    return { message: 'Estoque not Found', status: 404 };
+  if (!estoque) {
+    return { message: 'estoque not Found', status: 404 };
   }
-  return { message: Estoque, status: null };
+  return { message: estoque, status: null };
 }
 
 const postEstoque = async (file) => {
