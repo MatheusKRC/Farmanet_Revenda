@@ -38,6 +38,14 @@ const patchEstoque = async (req, res) => {
   return res.status(statusOk).json(message);
 }
 
+const destroyEstoque = async (req, res) => {
+  const {message, status} = await estoqueServices.deleteAllEstoque()
+  if (status) {
+    return res.status(status).json(message);
+  }
+  return res.status(statusOk).json(message);
+}
+
 module.exports = {
-    getAll, getEstoqueByCod, postEstoque, patchEstoque
+    getAll, getEstoqueByCod, postEstoque, patchEstoque, destroyEstoque
 }

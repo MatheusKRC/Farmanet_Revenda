@@ -34,6 +34,17 @@ const patchSaidas = async (saidas, codigo) => {
   return { message: updateSaidas, status: null };
 }
 
+const deleteAllSaidas = async () => {
+    const deleteAll = await Saidas.destroy({
+      where: {},
+      truncate: true
+    })
+    if (!deleteAll) {
+      return {message: 'Saidas not Deleted', status: 404}
+    }
+    return {message: deleteAll, status: null}
+  }
+
 module.exports = {
-    getSaidas, getSaidasByCod, postSaidas, patchSaidas
+    getSaidas, getSaidasByCod, postSaidas, patchSaidas, deleteAllSaidas
 }

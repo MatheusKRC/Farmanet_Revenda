@@ -38,6 +38,14 @@ const patchSaidas = async (req, res) => {
   return res.status(statusOk).json(message);
 }
 
+const destroySaidas = async (req, res) => {
+    const {message, status} = await saidasServices.deleteAllSaidas()
+    if (status) {
+      return res.status(status).json(message);
+    }
+    return res.status(statusOk).json(message);
+  }
+
 module.exports = {
-    getAll, getSaidasByCod, postSaidas, patchSaidas
+    getAll, getSaidasByCod, postSaidas, patchSaidas, destroySaidas
 }

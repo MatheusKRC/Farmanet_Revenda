@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const { Estoque } = require('../../Database/models');
 
 const getEstoque = async () => {
@@ -33,6 +34,17 @@ const patchEstoque = async (estoque, codigo) => {
   return { message: updateEstoque, status: null };
 }
 
+const deleteAllEstoque = async () => {
+  const deleteAll = await Estoque.destroy({
+    where: {},
+    truncate: true
+  })
+  if (!deleteAll) {
+    return {message: 'Estoque not Deleted', status: 404}
+  }
+  return {message: deleteAll, status: null}
+}
+
 module.exports = {
-    getEstoque, getEstoqueByCod, postEstoque, patchEstoque
+    getEstoque, getEstoqueByCod, postEstoque, patchEstoque, deleteAllEstoque
 }
