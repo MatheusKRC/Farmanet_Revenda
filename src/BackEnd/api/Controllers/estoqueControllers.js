@@ -3,7 +3,7 @@ const estoqueServices = require('../Services/estoqueServices');
 const statusOk = 200;
 
 const getAll = async (_req, res) => {
-  const { message, status } = await estoqueServices.getestoque();
+  const { message, status } = await estoqueServices.getEstoque();
   if (status) {
     return res.status(status).json(message);
   }
@@ -22,7 +22,7 @@ const getEstoqueByCod = async (req, res) => {
 const postEstoque = async (req, res) => {
   const {body} = req
   console.log(body);
-  const result = await estoqueServices.postestoque(body)
+  const result = await estoqueServices.postEstoque(body)
   if (result) {
     return res.status(200).json(result);
   }
@@ -31,7 +31,7 @@ const postEstoque = async (req, res) => {
 
 const patchEstoque = async (req, res) => {
   const {body} = req
-  const {message, status} = await estoqueServices.patchestoque(body, body.codigo)
+  const {message, status} = await estoqueServices.patchEstoque(body, body.codigo)
   if (status) {
     return res.status(status).json(message);
   }
