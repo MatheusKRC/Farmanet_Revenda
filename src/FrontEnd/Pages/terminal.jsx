@@ -231,7 +231,7 @@ function Terminal() {
         setItems([])
         setTotal(0)
         setInputOn(true)}}>F7 - Cancela Pré Venda</span>}
-          <span>F11 - Opções</span>
+          <span onClick={() => navigate('/relatorio')}>F11 - Relatorio</span>
           <span>F12 - Fim</span>
         </footer>
 
