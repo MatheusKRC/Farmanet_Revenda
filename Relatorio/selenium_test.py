@@ -69,4 +69,4 @@ def html_to_json(html_path, output="Relatorio.json"):
     print(f"✅ {len(produtos)} produtos exportados")
 
 if __name__ == "__main__":
-    html_to_json("/home/matheuskrc/Projects/My_Projects/farmanet-revenda/Relatorio/Relatorio_de_produtos.HTML")
+    html_to_json("/home/matheuskrc/Projects/My_Projects/Farmanet_Revenda/Relatorio/90diasEurofarma.HTML")
