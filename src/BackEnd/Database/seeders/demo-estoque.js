@@ -3,8 +3,7 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
       await queryInterface.bulkInsert('Estoque', [
-        [
-            [
+      
                 {
                     descricao_estq: "ACEBROFILINA 25MG/5ML PED 120ML",
                     fabricante_estq: "EUROFARMA - GEN",
@@ -1040,8 +1039,7 @@ module.exports = {
                     fabricante_estq: "EUROFARMA - GEN",
                     quantidade_estq: 4
                 },
-            ] 
-        ]
+         
     ]);
     },
   

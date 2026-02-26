@@ -3,7 +3,6 @@
 module.exports = {
     async up(queryInterface, Sequelize) {
       await queryInterface.bulkInsert('Saidas', [
-        [
             {
                 descricao_s: "ACEBROFILINA 50MG/5ML ADT 120ML",
                 fabricante_s: "EUROFARMA - GEN",
@@ -809,7 +808,6 @@ module.exports = {
                 fabricante_s: "EUROFARMA - GEN",
                 quantidade_s: 5
             }
-        ]
     ]);
     },
   
