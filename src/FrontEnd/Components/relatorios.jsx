@@ -38,7 +38,7 @@ const handleUpload = async (file, route) => {
     const formData = new FormData();
     formData.append("file", file); // 🔥 arquivo real
   
-    const response = await fetch(`https://farmanetrevenda.up.railway.app/upload${route}`, {
+    const response = await fetch(`https://farmanetrevenda-production-63b5.up.railway.app/upload${route}`, {
       method: "POST",
       body: formData// ❌ sem headers
     });
