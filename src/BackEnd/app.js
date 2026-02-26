@@ -6,6 +6,8 @@ const userRoutes = require('./api/Routes/userRoutes');
 const productsRoutes = require('./api/Routes/productsRoutes');
 const collectorRoutes = require('./api/Routes/collectorsRoutes');
 const cors = require('cors');
+const saidasRoutes = require("./api/Routes/saidasRoutes");
+const estoqueRoutes = require("./api/Routes/estoqueRoutes");
 
 const app = express();
 const upload = multer();
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use(userRoutes);
 app.use(productsRoutes)
 app.use(collectorRoutes)
+app.use(saidasRoutes)
+app.use(estoqueRoutes)
 app.use(express.static('public'));
 app.post('/upload', upload.single("file"), (req, res) => {
   console.log("req.file:", req.file);
