@@ -39,7 +39,7 @@ const deleteAllSaidas = async () => {
       where: {},
       truncate: true
     })
-    if (!deleteAll) {
+    if (deleteAll) {
       return {message: 'Saidas not Deleted', status: 404}
     }
     return {message: deleteAll, status: null}

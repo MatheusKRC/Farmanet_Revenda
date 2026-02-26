@@ -38,7 +38,7 @@ const deleteAllEstoque = async () => {
     where: {},
     truncate: true
   })
-  if (!deleteAll) {
+  if (deleteAll) {
     return {message: 'Estoque not Deleted', status: 404}
   }
   return {message: deleteAll, status: null}

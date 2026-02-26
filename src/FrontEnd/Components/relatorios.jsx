@@ -1,5 +1,7 @@
+import "../Style/relatorio.css"
 const { useState, useEffect } = require("react")
 const { getData, deleteData, postData } = require("../Service/request");
+
 
 
 function Relatorios() {
@@ -36,21 +38,33 @@ const handleUpload = async (file, route) => {
     const formData = new FormData();
     formData.append("file", file); // 🔥 arquivo real
   
-    const response = await fetch("http://localhost:3004/upload", {
+    const response = await fetch(`http://localhost:3004/upload${route}`, {
       method: "POST",
-      body: formData // ❌ sem headers
+      body: formData// ❌ sem headers
     });
   
     const {data, error} = await response.json();
   
     console.log(data, Array.isArray(data));
     await deleteData(route)
-    if (route === 'estoques') {
-        const estoqueData = await postData(route)
+    if (route === 'estoque') {
+        const dataEstq = data.map(prod => ({
+                descricao_estq: prod.descricao,
+                fabricante_estq: prod.fabricante,
+                quantidade_estq: prod.quantidade
+        }))
+        console.log(dataEstq);
+        const estoqueData = await postData('estoques', dataEstq)
         setEstoque(estoqueData)
         console.log(estoque);
     } else {
-        const saidasData = await postData(route)
+        const dataS = data.map(prod => ({
+            descricao_s: prod.descricao,
+            fabricante_s: prod.fabricante,
+            quantidade_s: prod.quantidade
+    }))
+        console.log(dataS);
+        const saidasData = await postData(route, dataS)
         setEstoque(saidasData)
         console.log(saidas);
     }
@@ -64,26 +78,46 @@ const handleUpload = async (file, route) => {
 
   useEffect(() => {
     getAll()
-  }, [])
+  }, [estoque, saidas])
 
     return (
-        <div>
-            Relatorio de Estoque
-          <input 
-          type="file"
-          onChange={(e) => handleUpload(e.target.files[0], "estoques")}
-          ></input>
-          <br></br>
-          <br></br>
-            Relatorio de Saidas
-          <input 
-          type="file"
-          onChange={(e) => handleUpload(e.target.files[0], "saidas")}
+        <div className="background">
+        <div className="relatorios-container">
 
-          ></input>
+        <div className="upload-card">
+      
+          <h2>Importar Relatórios</h2>
+      
+          <div className="upload-grid">
+      
+            <div className="upload-group">
+              <label>Relatório de Estoque</label>
+              <input
+                type="file"
+                onChange={(e) => handleUpload(e.target.files[0], "estoque")}
+              />
+            </div>
+      
+            <div className="upload-group">
+              <label>Relatório de Saídas</label>
+              <input
+                type="file"
+                onChange={(e) => handleUpload(e.target.files[0], "saidas")}
+              />
+            </div>
+      
+          </div>
+      
           <button
-          onClick={() => createSugestão()}
-          >teste</button>
+            className="btn-gerar"
+            onClick={() => createSugestão()}
+          >
+            Gerar Sugestão
+          </button>
+      
+        </div>
+      
+      </div>
           <div className="orcamento">
             <div className="orcamento-card">
 
@@ -102,17 +136,17 @@ const handleUpload = async (file, route) => {
                   <th>Sugestao de Compra</th>
                 </tr>
               </thead>
-             
+             <tbody>
                 {sugestao && sugestao.map((prod) => (
-                <tbody>
+                <tr key={prod.id}>
                     <td>{prod.descricao_estq}</td>
                     <td>{prod.fabricante_estq}</td>
                     <td>{prod.quantidade_estq}</td>
                     <td>{prod.saida.quantidade_s}</td>
                     <td>{prod.sugestao}</td>
-                </tbody>
+                </tr>
                 ))}
-             
+             </tbody>
               </table>
             </main>
             <footer className="orcamento-footer">
