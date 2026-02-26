@@ -116,6 +116,10 @@ function Terminal() {
         setTotal(0)
         setInputOn(true)
       }
+      if (event.key === "F9") {
+        event.preventDefault()
+        navigate('/relatorios')
+      }
       if(event.key === "Enter") {
         console.log(quantidade);
         const now = Date.now()
@@ -231,7 +235,7 @@ function Terminal() {
         setItems([])
         setTotal(0)
         setInputOn(true)}}>F7 - Cancela Pré Venda</span>}
-          <span onClick={() => navigate('/relatorio')}>F11 - Relatorio</span>
+          <span onClick={() => navigate('/relatorios')}>F9 - Relatorio</span>
           <span>F12 - Fim</span>
         </footer>
 
