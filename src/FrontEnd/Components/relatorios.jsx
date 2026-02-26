@@ -65,7 +65,7 @@ const handleUpload = async (file, route) => {
     }))
         console.log(dataS);
         const saidasData = await postData(route, dataS)
-        setEstoque(saidasData)
+        setSaidas(saidasData)
         console.log(saidas);
     }
   
@@ -78,7 +78,7 @@ const handleUpload = async (file, route) => {
 
   useEffect(() => {
     getAll()
-  }, [estoque, saidas])
+  }, [])
 
     return (
         <div className="background">

@@ -12,8 +12,12 @@ const estoqueRoutes = require("./api/Routes/estoqueRoutes");
 const app = express();
 const upload = multer();
 
-
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+app.options('*', cors());
 app.use(express.json());
 app.use(userRoutes);
 app.use(productsRoutes)
@@ -24,8 +28,8 @@ app.use(express.static('public'));
 app.post('/uploadestoque', upload.single("file"), (req, res) => {
   console.log("req.file:", req.file);
   console.log("req.body:", req.body);
-  const python = spawn("/home/matheuskrc/Projects/My_Projects/Farmanet_Revenda/.venv/bin/python", [
-    "/home/matheuskrc/Projects/My_Projects/Farmanet_Revenda/Relatorio/RelatorioEstoque.py"
+  const python = spawn(".venv/bin/python", [
+    "Relatorio/RelatorioEstoque.py"
   ]);
   const htmlContent = req.file.buffer.toString("utf-8");
 
@@ -72,8 +76,8 @@ app.post('/uploadestoque', upload.single("file"), (req, res) => {
 app.post('/uploadsaidas', upload.single("file"), (req, res) => {
   console.log("req.file:", req.file);
   console.log("req.body:", req.body);
-  const python = spawn("/home/matheuskrc/Projects/My_Projects/Farmanet_Revenda/.venv/bin/python", [
-    "/home/matheuskrc/Projects/My_Projects/Farmanet_Revenda/Relatorio/RelatorioSaidas.py"
+  const python = spawn(".venv/bin/python", [
+    "Relatorio/RelatorioSaidas.py"
   ]);
   const htmlContent = req.file.buffer.toString("utf-8");
 
