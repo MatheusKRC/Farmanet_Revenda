@@ -21,7 +21,6 @@ const getEstoqueByCod = async (req, res) => {
 
 const postEstoque = async (req, res) => {
   const {body} = req
-  console.log(body);
   const result = await estoqueServices.postEstoque(body)
   if (result) {
     return res.status(200).json(result);
@@ -38,7 +37,7 @@ const patchEstoque = async (req, res) => {
   return res.status(statusOk).json(message);
 }
 
-const destroyEstoque = async (req, res) => {
+const destroyEstoque = async (_req, res) => {
   const {message, status} = await estoqueServices.deleteAllEstoque()
   if (status) {
     return res.status(status).json(message);

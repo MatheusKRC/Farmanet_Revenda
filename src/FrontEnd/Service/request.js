@@ -24,4 +24,9 @@ export const patchData = async (endpoint, body) => {
   return data
 }
 
+export const deleteData = async (endpoint) => {
+  const { data } = await request.delete(endpoint)
+  return data
+}
+
 export default request

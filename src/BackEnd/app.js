@@ -25,7 +25,7 @@ app.post('/upload', upload.single("file"), (req, res) => {
   console.log("req.file:", req.file);
   console.log("req.body:", req.body);
   const python = spawn("/home/matheuskrc/Projects/My_Projects/farmanet-revenda/.venv/bin/python", [
-    "/home/matheuskrc/Projects/My_Projects/farmanet-revenda/src/BackEnd/RelatorioProdutos.py"
+    "/home/matheuskrc/Projects/My_Projects/farmanet-revenda/src/BackEnd/RelatorioEstoque.py"
   ]);
   const htmlContent = req.file.buffer.toString("utf-8");
 

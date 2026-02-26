@@ -1,5 +1,5 @@
 const { useState, useEffect } = require("react")
-const { getData } = require("../Service/request");
+const { getData, deleteData, postData } = require("../Service/request");
 
 
 function Relatorios() {
@@ -25,10 +25,9 @@ const createSugestão = async () => {
 
     const newSugestao = resultado.filter(({sugestao}) => sugestao > 0)
     setSugestao(newSugestao)
-    console.log(newSugestao);
 }
 
-const handleUpload = async (file) => {
+const handleUpload = async (file, route) => {
     if (!file) {
       alert("Selecione um arquivo");
       return;
@@ -45,6 +44,16 @@ const handleUpload = async (file) => {
     const {data, error} = await response.json();
   
     console.log(data, Array.isArray(data));
+    await deleteData(route)
+    if (route === 'estoques') {
+        const estoqueData = await postData(route)
+        setEstoque(estoqueData)
+        console.log(estoque);
+    } else {
+        const saidasData = await postData(route)
+        setEstoque(saidasData)
+        console.log(saidas);
+    }
   
     if (!response.ok) {
       console.error(error);
@@ -62,15 +71,14 @@ const handleUpload = async (file) => {
             Relatorio de Estoque
           <input 
           type="file"
-          onChange={(e) => handleUpload(e.target.files[0])}
-
+          onChange={(e) => handleUpload(e.target.files[0], "estoques")}
           ></input>
           <br></br>
           <br></br>
             Relatorio de Saidas
           <input 
           type="file"
-          onChange={(e) => handleUpload(e.target.files[0])}
+          onChange={(e) => handleUpload(e.target.files[0], "saidas")}
 
           ></input>
           <button

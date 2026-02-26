@@ -1,4 +1,3 @@
-const { where } = require('sequelize');
 const { Estoque } = require('../../Database/models');
 
 const getEstoque = async () => {
