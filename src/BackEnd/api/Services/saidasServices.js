@@ -2,6 +2,7 @@ const { Saidas } = require('../../Database/models');
 
 const getSaidas = async () => {
     const saidas = await Saidas.findAll()
+    console.log('teste');
   
     if (!saidas) {
       return { message: 'Saidas not Found', status: 404 };
