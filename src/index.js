@@ -11,6 +11,7 @@ import { BuyerProvider } from "./FrontEnd/context/BuyerContext"
 import { ProductProvider } from './FrontEnd/context/ProductContext';
 import { OrcamentoProvider } from './FrontEnd/context/OrcamentoContext';
 import Orcamento from './FrontEnd/Components/orcamento';
+import Relatorios from './FrontEnd/Components/relatorios';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,6 +27,7 @@ root.render(
         <Route path="/products" Component={Products}/>
         <Route path="/buyers" Component={Buyers}/>
         <Route path="/orcamento" Component={Orcamento}/>
+        <Route path="/relatorios" Component={Relatorios}/>
       </Routes>
     </BrowserRouter>
     </OrcamentoProvider>
