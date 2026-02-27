@@ -1,8 +1,12 @@
 [phases.setup]
-nixPkgs = ["python310"]
+nixPkgs = [
+  "python310",
+  "python310Packages.pip",
+  "python310Packages.setuptools",
+  "python310Packages.wheel"
+]
 
 [phases.install]
 cmds = [
-  "python3 -m venv .venv",
-  ".venv/bin/pip install -r requirements.txt"
+  "pip3 install --break-system-packages -r requirements.txt"
 ]
