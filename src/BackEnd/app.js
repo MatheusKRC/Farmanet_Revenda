@@ -26,9 +26,10 @@ app.use(saidasRoutes)
 app.use(estoqueRoutes)
 app.use(express.static('public'));
 app.post('/uploadestoque', upload.single("file"), (req, res) => {
+  console.log("bateu na rota uploadestoque");
   console.log("req.file:", req.file);
   console.log("req.body:", req.body);
-  const python = spawn(".venv/bin/python", [
+  const python = spawn("python3", [
     "Relatorio/RelatorioEstoque.py"
   ]);
   const htmlContent = req.file.buffer.toString("utf-8");
@@ -61,7 +62,6 @@ app.post('/uploadestoque', upload.single("file"), (req, res) => {
       res.status(500).json({
         success: false,
         data: [],
-        error: errorMessage
       });
     }
   });
@@ -76,7 +76,7 @@ app.post('/uploadestoque', upload.single("file"), (req, res) => {
 app.post('/uploadsaidas', upload.single("file"), (req, res) => {
   console.log("req.file:", req.file);
   console.log("req.body:", req.body);
-  const python = spawn(".venv/bin/python", [
+  const python = spawn("python3", [
     "Relatorio/RelatorioSaidas.py"
   ]);
   const htmlContent = req.file.buffer.toString("utf-8");
@@ -109,7 +109,6 @@ app.post('/uploadsaidas', upload.single("file"), (req, res) => {
       res.status(500).json({
         success: false,
         data: [],
-        error: errorMessage
       });
     }
   });
