@@ -5,13 +5,18 @@ const multer = require("multer");
 const upload = multer();
 const uploadRoutes = Router();
 
+const path = require("path");
+
+const scriptPath = path.join(__dirname, "Relatorio", "RelatorioEstoque.py");
+
+
 uploadRoutes.post('/uploadestoque', upload.single("file"), (req, res) => {
   
     console.log("bateu na rota uploadestoque");
     console.log("req.file:", req.file);
     console.log("req.body:", req.body);
     const python = spawn("python3", [
-      "Relatorio/RelatorioEstoque.py"
+      scriptPath
     ]);
     const htmlContent = req.file.buffer.toString("utf-8");
   
@@ -59,7 +64,7 @@ uploadRoutes.post('/uploadsaidas', upload.single("file"), (req, res) => {
     console.log("req.file:", req.file);
     console.log("req.body:", req.body);
     const python = spawn("python3", [
-      "Relatorio/RelatorioSaidas.py"
+      scriptPath
     ]);
     const htmlContent = req.file.buffer.toString("utf-8");
   
