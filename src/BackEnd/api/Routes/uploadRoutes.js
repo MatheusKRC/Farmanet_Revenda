@@ -7,7 +7,6 @@ const uploadRoutes = Router();
 
 const path = require("path");
 
-const pythonPath = path.join(__dirname, "..", ".venv", "bin", "python");
 const scriptPath = path.join(__dirname, "Relatorio", "RelatorioEstoque.py");
 
 
