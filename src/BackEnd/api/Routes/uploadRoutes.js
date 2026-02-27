@@ -7,6 +7,7 @@ const uploadRoutes = Router();
 
 const path = require("path");
 
+const pythonPath = path.join(__dirname, "..", ".venv", "bin", "python");
 const scriptPath = path.join(__dirname, "Relatorio", "RelatorioEstoque.py");
 
 
@@ -15,7 +16,7 @@ uploadRoutes.post('/uploadestoque', upload.single("file"), (req, res) => {
     console.log("bateu na rota uploadestoque");
     console.log("req.file:", req.file);
     console.log("req.body:", req.body);
-    const python = spawn("python3", [
+    const python = spawn(pythonPath, [
       scriptPath
     ]);
     const htmlContent = req.file.buffer.toString("utf-8");
@@ -32,6 +33,14 @@ uploadRoutes.post('/uploadestoque', upload.single("file"), (req, res) => {
       error += data.toString();
     });
   
+    python.on("error", (err) => {
+        console.error("ERRO SPAWN:", err);
+      });
+      
+      python.stderr.on("data", (data) => {
+        console.error("PYTHON ERROR:", data.toString());
+      });
+
     python.on('close', (code) => {
       if (code !== 0) {
         console.error('Erro Python:', error);
@@ -63,7 +72,7 @@ uploadRoutes.post('/uploadestoque', upload.single("file"), (req, res) => {
 uploadRoutes.post('/uploadsaidas', upload.single("file"), (req, res) => {
     console.log("req.file:", req.file);
     console.log("req.body:", req.body);
-    const python = spawn("python3", [
+    const python = spawn(pythonPath, [
       scriptPath
     ]);
     const htmlContent = req.file.buffer.toString("utf-8");
