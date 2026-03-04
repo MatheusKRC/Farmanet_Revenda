@@ -29,6 +29,23 @@ const createSugestão = async () => {
     setSugestao(newSugestao)
 }
 
+function chunkArray(arr, size) {
+  const chunks = [];
+  for (let i = 0; i < arr.length; i += size) {
+    chunks.push(arr.slice(i, i + size));
+  }
+  return chunks;
+}
+
+async function postInChunks(route, items, chunkSize = 500) {
+  const chunks = chunkArray(items, chunkSize);
+
+  for (let i = 0; i < chunks.length; i++) {
+    await postData(route, chunks[i]); // envia só um pedaço por vez
+    console.log(`POST ${route}: lote ${i + 1}/${chunks.length} (${chunks[i].length} itens)`);
+  }
+}
+
 const handleUpload = async (file, route) => {
     if (!file) {
       alert("Selecione um arquivo");
@@ -54,7 +71,7 @@ const handleUpload = async (file, route) => {
                 quantidade_estq: prod.quantidade
         }))
         console.log(dataEstq);
-        const estoqueData = await postData('estoques', dataEstq)
+        const estoqueData = await postInChunks('estoques', dataEstq, 300)
         setEstoque(estoqueData)
         console.log(estoque);
     } else {
@@ -64,7 +81,7 @@ const handleUpload = async (file, route) => {
             quantidade_s: prod.quantidade
     }))
         console.log(dataS);
-        const saidasData = await postData(route, dataS)
+        const saidasData = await postInChunks(route, dataS, 300)
         setSaidas(saidasData)
         console.log(saidas);
     }
