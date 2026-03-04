@@ -71,9 +71,10 @@ const handleUpload = async (file, route) => {
                 quantidade_estq: prod.quantidade
         }))
         console.log(dataEstq);
-        const estoqueData = await postInChunks('estoques', dataEstq, 300)
+        const estoqueData = await postInChunks('estoques', dataEstq, 1000)
         setEstoque(estoqueData)
         console.log(estoque);
+        alert('Estoque Atualizado')
     } else {
         const dataS = data.map(prod => ({
             descricao_s: prod.descricao,
@@ -81,9 +82,10 @@ const handleUpload = async (file, route) => {
             quantidade_s: prod.quantidade
     }))
         console.log(dataS);
-        const saidasData = await postInChunks(route, dataS, 300)
+        const saidasData = await postInChunks(route, dataS, 1000)
         setSaidas(saidasData)
         console.log(saidas);
+        alert('Saidas Atualizadas')
     }
   
     if (!response.ok) {
@@ -95,7 +97,7 @@ const handleUpload = async (file, route) => {
 
   useEffect(() => {
     getAll()
-  }, [])
+  }, [estoque, saidas])
 
     return (
         <div className="background">
