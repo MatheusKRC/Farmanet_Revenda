@@ -110,7 +110,7 @@ uploadRoutes.post('/uploadsaidas', upload.single("file"), (req, res) => {
     console.log("req.file:", req.file);
     console.log("req.body:", req.body);
     const python = spawn("python3", [
-      "Relatorio/RelatorioProdutos.py"
+      "Relatorio/selenium_test.py"
     ]);
     const htmlContent = req.file.buffer.toString("utf-8");
   

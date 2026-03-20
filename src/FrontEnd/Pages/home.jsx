@@ -64,7 +64,7 @@ function Home() {
     const formData = new FormData();
     formData.append("file", file); // 🔥 arquivo real
   
-    const response = await fetch(`https://farmanetrevenda-production-63b5.up.railway.app/upload`, {
+    const response = await fetch('https://farmanetrevenda-production-63b5.up.railway.app/upload', {
       method: "POST",
       body: formData// ❌ sem headers
     });
