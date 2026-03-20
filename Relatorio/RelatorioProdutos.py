@@ -52,7 +52,7 @@ def html_to_json_from_string(html_text):
                 else:
                     atual["preco_compra"] = float(texto.replace(',', '.'))
 
-            elif 470 <= left <= 520:
+            elif 504 <= left <= 520:
                 atual["preco_compra"] = float(texto.replace(',', '.'))
 
             elif 640 <= left <= 720:
