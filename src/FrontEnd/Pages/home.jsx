@@ -74,7 +74,7 @@ function Home() {
     console.log(data, Array.isArray(data));
     await deleteData('products')
         console.log(data);
-        const estoqueData = await postInChunks('products', data, 800)
+        const estoqueData = await postInChunks('products', data, 500)
         console.log(estoqueData);
         alert('Estoque Atualizado')
   
