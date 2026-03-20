@@ -2,7 +2,7 @@ import { useState } from "react";
 import fachada from "../Assets/fachada.jpeg"
 import logo from "../Assets/Logo_Com_Nome.png"
 import { useNavigate } from "react-router-dom";
-import { getData, getDataByCod, patchData, postData } from "../Service/request";
+import { postData, deleteData } from "../Service/request";
 import '../Style/home.css'
 
 function Home() {
@@ -35,7 +35,27 @@ function Home() {
     }
   }
 
-  const handleUpload = async (file) => {
+  function chunkArray(arr, size) {
+    console.log('Chunks');
+
+    const chunks = [];
+    for (let i = 0; i < arr.length; i += size) {
+      chunks.push(arr.slice(i, i + size));
+    }
+    return chunks;
+  }  
+
+  async function postInChunks(route, items, chunkSize = 500) {
+    console.log('postInChunks');
+    const chunks = chunkArray(items, chunkSize);
+  
+    for (let i = 0; i < chunks.length; i++) {
+      await postData(route, chunks[i]); // envia só um pedaço por vez
+      console.log(`POST ${route}: lote ${i + 1}/${chunks.length} (${chunks[i].length} itens)`);
+    }
+  }
+
+  const handleUpload = async (file, route) => {
     if (!file) {
       alert("Selecione um arquivo");
       return;
@@ -44,45 +64,27 @@ function Home() {
     const formData = new FormData();
     formData.append("file", file); // 🔥 arquivo real
   
-    const response = await fetch("http://localhost:3004/upload", {
+    const response = await fetch(`https://farmanetrevenda-production-63b5.up.railway.app/upload`, {
       method: "POST",
-      body: formData // ❌ sem headers
+      body: formData// ❌ sem headers
     });
   
     const {data, error} = await response.json();
   
     console.log(data, Array.isArray(data));
+    await deleteData(route)
+        console.log(data);
+        const estoqueData = await postInChunks(route, data, 800)
+        console.log(estoqueData);
+        alert('Estoque Atualizado')
   
     if (!response.ok) {
       console.error(error);
       return;
     }
 
-    const dbProducts = await getData('products')
-    console.log(dbProducts.length, data.length);
-
-    if(dbProducts.length < data.length) {
-      await data.map(async (product) => {
-          const newProduct = await getDataByCod("/product", product)
-          if (newProduct) {
-            return true
-          } else {
-            await postData("/products", product)
-          }
-      })
-    }
-  
-      await data.map(async (products) => {
-        const productbyCod = await getDataByCod("/product", products)
-      if (products.quantidade !== productbyCod.quantidade) {
-        const data = await patchData('/product', products)
-        return data
-      } else {
-        return products
-      }
-    })
-
   }
+
 
   return (
     <div className="home">
@@ -122,7 +124,7 @@ function Home() {
           Relatorio de Produtos
           <input 
           type="file"
-          onChange={(e) => handleUpload(e.target.files[0])}
+          onChange={(e) => handleUpload(e.target.files[0], 'upload')}
 
           ></input>
 

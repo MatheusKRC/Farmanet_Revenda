@@ -38,6 +38,14 @@ const patchProducts = async (req, res) => {
   return res.status(statusOk).json(message);
 }
 
+const destroyProducts = async (_req, res) => {
+  const {message, status} = await productsServices.deleteAllProducts()
+  if (status) {
+    return res.status(status).json(message);
+  }
+  return res.status(statusOk).json(message);
+}
+
 module.exports = {
-    getAll, getProductByCod, postProducts, patchProducts
+    getAll, getProductByCod, postProducts, patchProducts, destroyProducts
 }

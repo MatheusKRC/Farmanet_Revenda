@@ -71,7 +71,7 @@ const handleUpload = async (file, route) => {
                 quantidade_estq: prod.quantidade
         }))
         console.log(dataEstq);
-        const estoqueData = await postInChunks('estoques', dataEstq, 1000)
+        const estoqueData = await postInChunks('estoques', dataEstq, 800)
         setEstoque(estoqueData)
         console.log(estoque);
         alert('Estoque Atualizado')

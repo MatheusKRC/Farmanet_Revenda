@@ -33,6 +33,18 @@ const patchProducts = async (product, codigo) => {
   return { message: updateProduct, status: null };
 }
 
+const deleteAllProducts = async () => {
+  const deleteAll = await Products.destroy({
+    where: {},
+    truncate: true
+  })
+  if (deleteAll) {
+    return {message: 'Products not Deleted', status: 404}
+  }
+  return {message: deleteAll, status: null}
+}
+
+
 module.exports = {
-    getProducts, getProductByCod, postProducts, patchProducts
+    getProducts, getProductByCod, postProducts, patchProducts, deleteAllProducts
 }
