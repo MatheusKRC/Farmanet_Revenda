@@ -55,7 +55,7 @@ function Home() {
     }
   }
 
-  const handleUpload = async (file, route) => {
+  const handleUpload = async (file) => {
     if (!file) {
       alert("Selecione um arquivo");
       return;
@@ -72,9 +72,9 @@ function Home() {
     const {data, error} = await response.json();
   
     console.log(data, Array.isArray(data));
-    await deleteData(route)
+    await deleteData('products')
         console.log(data);
-        const estoqueData = await postInChunks(route, data, 800)
+        const estoqueData = await postInChunks('products', data, 800)
         console.log(estoqueData);
         alert('Estoque Atualizado')
   
@@ -123,8 +123,8 @@ function Home() {
 
           Relatorio de Produtos
           <input 
-          type="file"
-          onChange={(e) => handleUpload(e.target.files[0], 'upload')}
+          type="file" 
+          onChange={(e) => handleUpload(e.target.files[0])}
 
           ></input>
 
