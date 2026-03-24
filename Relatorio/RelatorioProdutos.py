@@ -50,7 +50,7 @@ def html_to_json_from_string(html_text):
                 if texto.isdigit():
                     atual["quantidade"] = int(texto)
                 else:
-                    atual["preco_compra"] = float(texto.replace(',', '.'))
+                    atual["preco_compra"] = float(texto.replace('.', '').replace(',', '.'))
 
             elif 504 <= left <= 520:
                 atual["preco_compra"] = float(texto.replace(',', '.'))
